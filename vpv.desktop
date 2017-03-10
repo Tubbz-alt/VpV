@@ -1,0 +1,82 @@
+# VpV
+# Search Youtube and play with VLC
+#
+# 03/2017 algol@sapo.pt
+# GNU GENERAL PUBLIC LICENSE 3.0
+
+[Desktop Entry]
+Version=1.0
+Name=Search Youtube and play with VLC
+Comment=Search for Youtube videos and play them VLC
+Name[pt]=Pesquisar vídeos no YouTube e reproduzir com o VLC
+Comment[pt]=Reproduzir com VLC pesquisa no YouTube
+Keywords=vídeo;vlc;youtube;Shaun the Sheep;Pocoyo;Pantera Cor-de-Rosa;
+Keywords[pt]=vídeo;vlc;youtube;Pulguita;Noddy;Ovelha Choné;Shaun the Sheep;Pocoyo;Pink Panter;
+Exec=/home/pai/vpv --random --channel UCRDEFOl88yMk20xXo7z8kow tomas ovelha+choné noddy Pocoyo+pt+Portugal shaun+the+sheep bob+o+construtor+pt_PT car+school
+Terminal=false
+Type=Application
+Icon=vlc
+Categories=Application;Video;
+StartupNotify=true
+Actions=Pulguita;Noddy;Ovelha Choné;Shaun the Sheep;Pocoyo;Tomás e os seus amigos;Bob o Construtor;Pantera Cor de Rosa;Irmãos Koala;Car School
+
+[Desktop Action Pulguita]
+Name=Pulguita
+Name[pt]=Pulguita
+Comment[pt]=Pulguita
+Exec=/home/pai/vpv --random little+furry
+
+[Desktop Action Noddy]
+Name=Noddy
+Name[pt]=Noddy
+Comment[pt]=Noddy
+Exec=/home/pai/vpv --random noddy
+
+[Desktop Action Ovelha Choné]
+Name=Ovelha Choné
+Name[pt]=Ovelha Choné
+Comment[pt]=Ovelha Choné
+Exec=/home/pai/vpv --random ovelha+choné
+
+[Desktop Action Shaun the Sheep]
+Name=Shaun the Sheep
+Name[pt]=Shaun the Sheep
+Comment[pt]=Shaun the Sheep
+Exec=/home/pai/vpv --random shaun+the+sheep
+
+[Desktop Action Pocoyo]
+Name=Pocoyo
+Name[pt]=Pocoyo
+Comment[pt]=Pocoyo
+Exec=/home/pai/vpv --random Pocoyo+pt+Portugal
+
+[Desktop Action Tomás e os seus amigos]
+Name=Tomás e os seus amigos
+Name[pt]=Tomás e os seus amigos
+Comment[pt]=Tomás e os seus amigos
+Exec=/home/pai/vpv --random --channel UCRDEFOl88yMk20xXo7z8kow tomas
+
+[Desktop Action Bob o Construtor]
+Name=Bob o Construtor
+Name[pt]=Bob o Construtor
+Comment[pt]=Bob o Construtor
+Exec=/home/pai/vpv --random bob+o+construtor+pt_PT
+
+[Desktop Action Pantera Cor de Rosa]
+Name=Pantera Cor de Rosa
+Name[pt]=Pantera Cor de Rosa
+Comment[pt]=Pantera Cor de Rosa
+Exec=/home/pai/vpv --random pantera+cor+de+rosa
+
+[Desktop Action Irmãos Koala]
+Name=Irmãos Koala
+Name[pt]=Irmãos Koala
+Comment[pt]=Irmãos Koala
+Exec=/home/pai/vpv --random irmaos+koala
+
+[Desktop Action Car School]
+Name=Car School
+Name[pt]=Car School
+Comment[pt]=Car School
+Exec=/home/pai/vpv --random car+school
+

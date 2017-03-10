@@ -1,0 +1,71 @@
+#!/bin/bash
+
+# VpV
+# Search Youtube aNd Play with VLC
+#
+# 03/2017 algol@sapo.pt
+# GNU GENERAL PUBLIC LICENSE 3.0
+
+WORK_DIR="$HOME/.${0##*/}"
+CACHE_TIME="$((60*60*24*5))"
+#CACHE_TIME="$((60*1))"
+HASH="$(printf '%s' "$@" | md5sum | cut -d ' ' -f 1)"
+PLAYLIST_FILE="$WORK_DIR/$HASH.m3u"
+
+#TODO: usage, config debug, only save m3u, better parameter check
+
+[ -n "$DEBUG" ] && echo $@ $WORK_DIR $CACHE_TIME $HASH $PLAYLIST $HOME >> ${WORK_DIR}.log
+
+if [ ! -f "$PLAYLIST_FILE" ] || [ ! `stat --format=%Y "$PLAYLIST_FILE"` -gt $(( `date +%s` - $CACHE_TIME)) ]; then
+	while [ ${#} -gt 0 ]; do
+		# [ -n "$DEBUG" ] && echo option $1
+		case "$1" in
+		--channel) 
+			shift
+			#echo "channel $1: $2"
+			#PLAYLIST=${PLAYLIST}$(GET https://www.youtube.com/channel/$1/search?query=$(tr ' ' + <<<"$2") | sed -ne '/<a [^>]* title="\([^"]*\)"[^>]*href="\/watch/s/.*<a [^>]* title="\([^"]*\)"[^>]*href="\(\/watch[^"]*\)".*/https:\/\/www.youtube.com\2/p')
+			PLAYLIST=${PLAYLIST}$(GET https://www.youtube.com/channel/$1/search?query=$(tr ' ' + <<<"$2") | sed -ne '/<a [^>]* title="\([^"]*\)"[^>]*href="\/watch/{s/&[^;]*;/_/g;s/.*<a [^>]* title="\([^"]*\)"[^>]*href="\(\/watch[^"]*\)".*/#EXTINF:-1,\1\nhttps:\/\/www.youtube.com\2/p}')
+			PLAYLIST="${PLAYLIST}
+"
+		;;
+		-*) 
+			OPTIONS="$OPTIONS $1"
+		;;
+		*)
+			#echo "all: $1"
+			#PLAYLIST=${PLAYLIST}$(GET https://www.youtube.com/results?search_query=$(tr ' ' + <<<"$1") | sed -ne '/<a href="\/watch.*title="/s/.*<a href="\(\/watch[^"]*\)".* title="\([^"]*\)".*/https:\/\/www.youtube.com\1/p')
+			PLAYLIST=${PLAYLIST}$(GET https://www.youtube.com/results?search_query=$(tr ' ' + <<<"$1") | sed -ne '/<a href="\/watch.*title="/{s/&[^;]*;/_/g;s/.*<a href="\(\/watch[^"]*\)"[^>]* title="\([^"]*\)".*/#EXTINF:-1,\2\nhttps:\/\/www.youtube.com\1/p}')
+			PLAYLIST="${PLAYLIST}
+"
+		;;
+		esac
+		shift
+	done
+	if [ ! -d "$WORK_DIR" ]; then
+		mkdir "$WORK_DIR"
+	fi
+	echo "$PLAYLIST" > $PLAYLIST_FILE
+else
+	[ -n "$DEBUG" ] && echo "Reading from cache" >> ${WORK_DIR}.log
+	while [ ${#} -gt 0 ]; do
+		[ -n "$DEBUG" ] && echo option $1
+		case "$1" in
+		--channel) 
+			shift
+		;;
+		-*) 
+			OPTIONS="$OPTIONS $1"
+		;;
+		*)
+		;;
+		esac
+		shift
+	done
+fi
+[ -n "$DEBUG" ] && echo OPTIONS: $OPTIONS >> ${WORK_DIR}.log
+[ -n "$DEBUG" ] && echo PL: $PLAYLIST >> ${WORK_DIR}.log
+if [ -f "$PLAYLIST_FILE" ]; then
+	vlc --fullscreen --no-qt-error-dialogs $OPTIONS $PLAYLIST_FILE
+else
+	[ -n "$DEBUG" ] && echo error >> ${WORK_DIR}.log
+fi
