@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # VpV
-# Search Youtube aNd Play with VLC
+# Search Youtube and play with VLC
 #
 # 03/2017 algol@sapo.pt
 # GNU GENERAL PUBLIC LICENSE 3.0
@@ -23,8 +23,7 @@ if [ ! -f "$PLAYLIST_FILE" ] || [ ! `stat --format=%Y "$PLAYLIST_FILE"` -gt $(( 
 		--channel) 
 			shift
 			#echo "channel $1: $2"
-			#PLAYLIST=${PLAYLIST}$(GET https://www.youtube.com/channel/$1/search?query=$(tr ' ' + <<<"$2") | sed -ne '/<a [^>]* title="\([^"]*\)"[^>]*href="\/watch/s/.*<a [^>]* title="\([^"]*\)"[^>]*href="\(\/watch[^"]*\)".*/https:\/\/www.youtube.com\2/p')
-			PLAYLIST=${PLAYLIST}$(GET https://www.youtube.com/channel/$1/search?query=$(tr ' ' + <<<"$2") | sed -ne '/<a [^>]* title="\([^"]*\)"[^>]*href="\/watch/{s/&[^;]*;/_/g;s/.*<a [^>]* title="\([^"]*\)"[^>]*href="\(\/watch[^"]*\)".*/#EXTINF:-1,\1\nhttps:\/\/www.youtube.com\2/p}')
+			PLAYLIST=${PLAYLIST}$(wget -qO - https://www.youtube.com/channel/$1/search?query=$(tr ' ' + <<<"$2") | sed -ne '/<a [^>]* title="\([^"]*\)"[^>]*href="\/watch/{s/&[^;]*;/_/g;s/.*<a [^>]* title="\([^"]*\)"[^>]*href="\(\/watch[^"]*\)".*/#EXTINF:-1,\1\nhttps:\/\/www.youtube.com\2/p}')
 			PLAYLIST="${PLAYLIST}
 "
 		;;
@@ -33,8 +32,7 @@ if [ ! -f "$PLAYLIST_FILE" ] || [ ! `stat --format=%Y "$PLAYLIST_FILE"` -gt $(( 
 		;;
 		*)
 			#echo "all: $1"
-			#PLAYLIST=${PLAYLIST}$(GET https://www.youtube.com/results?search_query=$(tr ' ' + <<<"$1") | sed -ne '/<a href="\/watch.*title="/s/.*<a href="\(\/watch[^"]*\)".* title="\([^"]*\)".*/https:\/\/www.youtube.com\1/p')
-			PLAYLIST=${PLAYLIST}$(GET https://www.youtube.com/results?search_query=$(tr ' ' + <<<"$1") | sed -ne '/<a href="\/watch.*title="/{s/&[^;]*;/_/g;s/.*<a href="\(\/watch[^"]*\)"[^>]* title="\([^"]*\)".*/#EXTINF:-1,\2\nhttps:\/\/www.youtube.com\1/p}')
+			PLAYLIST=${PLAYLIST}$(wget -qO - https://www.youtube.com/results?search_query=$(tr ' ' + <<<"$1") | sed -ne '/<a href="\/watch.*title="/{s/&[^;]*;/_/g;s/.*<a href="\(\/watch[^"]*\)"[^>]* title="\([^"]*\)".*/#EXTINF:-1,\2\nhttps:\/\/www.youtube.com\1/p}')
 			PLAYLIST="${PLAYLIST}
 "
 		;;
