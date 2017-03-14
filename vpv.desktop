@@ -5,26 +5,20 @@
 # GNU GENERAL PUBLIC LICENSE 3.0
 
 [Desktop Entry]
-Version=1.0
+Version=1.1
 Name=Search Youtube and play with VLC
 Comment=Search for Youtube videos and play them VLC
 Name[pt]=Pesquisar vídeos no YouTube e reproduzir com o VLC
 Comment[pt]=Reproduzir com VLC pesquisa no YouTube
 Keywords=vídeo;vlc;youtube;Shaun the Sheep;Pocoyo;Pantera Cor-de-Rosa;
 Keywords[pt]=vídeo;vlc;youtube;Pulguita;Noddy;Ovelha Choné;Shaun the Sheep;Pocoyo;Pink Panter;
-Exec=./vpv --random --channel UCRDEFOl88yMk20xXo7z8kow tomas ovelha+choné noddy Pocoyo+pt+Portugal shaun+the+sheep bob+o+construtor+pt_PT car+school
+Exec=./vpv --random --channel UCRDEFOl88yMk20xXo7z8kow tomas ovelha+choné noddy Pocoyo+pt+Portugal shaun+the+sheep bob+o+construtor+pt_PT
 Terminal=false
 Type=Application
 Icon=vlc
 Categories=Application;Video;
 StartupNotify=true
 Actions=Pulguita;Noddy;Ovelha Choné;Shaun the Sheep;Pocoyo;Tomás e os seus amigos;Bob o Construtor;Pantera Cor de Rosa;Irmãos Koala;Car School
-
-[Desktop Action Pulguita]
-Name=Pulguita
-Name[pt]=Pulguita
-Comment[pt]=Pulguita
-Exec=./vpv --random little+furry
 
 [Desktop Action Noddy]
 Name=Noddy
@@ -78,5 +72,5 @@ Exec=./vpv --random irmaos+koala
 Name=Car School
 Name[pt]=Car School
 Comment[pt]=Car School
-Exec=./vpv --random car+school
+Exec=./vpv car+school
 
