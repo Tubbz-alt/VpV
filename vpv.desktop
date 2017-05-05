@@ -11,14 +11,26 @@ Comment=Search for Youtube videos and play them VLC
 Name[pt]=Pesquisar vídeos no YouTube e reproduzir com o VLC
 Comment[pt]=Reproduzir com VLC pesquisa no YouTube
 Keywords=vídeo;vlc;youtube;Shaun the Sheep;Pocoyo;Pink Panter;
-Keywords[pt]=vídeo;vlc;youtube;Noddy;Ovelha Choné;Shaun the Sheep;Pocoyo;Bob o Construtor;Patrulha Pata;Irmão Koala;Pantera Cor-de-Rosa;
-Exec=./vpv --random --channel UCRDEFOl88yMk20xXo7z8kow tomas ovelha+choné noddy Pocoyo+pt+Portugal shaun+the+sheep bob+o+construtor+pt_PT patrulha+pata+pt_PT irmaos+koala
+Keywords[pt]=vídeo;vlc;youtube;Noddy;Palavra Cantada;Ovelha Choné;Shaun the Sheep;Pocoyo;Bob o Construtor;Bombeiro Sam;Patrulha Pata;Irmão Koala;Pantera Cor-de-Rosa;
+Exec=./vpv --random --channel UCRDEFOl88yMk20xXo7z8kow tomas palavra+cantada ovelha+choné noddy Pocoyo+pt+Portugal shaun+the+sheep bob+o+construtor+pt_PT bombeiro+sam+pt_PT patrulha+pata+pt_PT irmaos+koala
 Terminal=false
 Type=Application
 Icon=vlc
 Categories=Application;Video;
 StartupNotify=true
-Actions=Pulguita;Noddy;Ovelha Choné;Shaun the Sheep;Pocoyo;Tomás e os seus amigos;Bob o Construtor;Patrulha Pata;Pantera Cor de Rosa;Irmãos Koala;Car School
+Actions=ManaMana;Palavra Cantada;Noddy;Ovelha Choné;Shaun the Sheep;Pocoyo;Tomás e os seus amigos;Bob o Construtor;Bombeiro Sam;Patrulha Pata;Pantera Cor de Rosa;Irmãos Koala;Car School
+
+[Desktop Action ManaMana]
+Name=ManaMana
+Name[pt]=ManaMana
+Comment[pt]=ManaMana
+Exec=./vpv ManaMana
+
+[Desktop Action Palavra Cantada]
+Name=Palavra Cantada
+Name[pt]=Palavra Cantada
+Comment[pt]=Palavra Cantada
+Exec=./vpv --random palavra+cantada
 
 [Desktop Action Noddy]
 Name=Noddy
@@ -55,6 +67,12 @@ Name=Bob o Construtor
 Name[pt]=Bob o Construtor
 Comment[pt]=Bob o Construtor
 Exec=./vpv --random bob+o+construtor+pt_PT
+
+[Desktop Action Bombeiro Sam]
+Name=Bombeiro Sam
+Name[pt]=Bombeiro Sam
+Comment[pt]=Bombeiro Sam
+Exec=/home/pai/vpv --random bombeiro+sam+pt_PT
 
 [Desktop Action Patrulha Pata]
 Name=Patrulha Pata
